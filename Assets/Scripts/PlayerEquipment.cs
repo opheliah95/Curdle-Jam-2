@@ -41,7 +41,14 @@ public class PlayerEquipment : MonoBehaviour
         // Curr item = stick -> Poke
         // Curr item = extender -> Grab
         // Curr item = extender+TP -> DropTP
-        if (Input.GetMouseButton(0))
+
+        // Single-frame only, no spam
+        if (Input.GetMouseButtonDown(0) && currState == GearState.ExtenderHold)
+        {
+            DropTP();
+        }
+
+        else if (Input.GetMouseButton(0)) 
         {
             switch (currState)
             {
@@ -53,20 +60,16 @@ public class PlayerEquipment : MonoBehaviour
                     if (!isGrabbing)
                         StartCoroutine("Grab");
                     break;
-                case (GearState.ExtenderHold):
-                    DropTP();
-                    break;
             }
         }
 
-        // Draw gear in and animate such.
+        // Draw gear in and animate such. Audio ga-ga.
     }
 
     void SwitchGear()
     {
         if (currState == GearState.ExtenderHold)
             DropTP();
-
         if (currState == GearState.ExtenderNeutral)
             currState = GearState.StickNeutral;
         else if (currState == GearState.StickNeutral)
@@ -81,11 +84,15 @@ public class PlayerEquipment : MonoBehaviour
         RaycastHit hit;
         // Doesn't take vert axis into account
         // if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range))
+        // TODO: Layermask to push infected only
         if (Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, range))
         {
             print("You hit a thing!");
             // TODO: Move object backwards using the object's method
             hit.transform.Translate(transform.TransformDirection(Vector3.forward) * pushStrength);
+        } else
+        {
+            // Miss
         }
         print("Poking poking poking");
         yield return new WaitForSeconds(0.5f);
@@ -96,6 +103,18 @@ public class PlayerEquipment : MonoBehaviour
     {
         isGrabbing = true;
         // Do the grabby wabby
+        // Hmmm, repeated code. If only there was some way I could make that neater. Hmmmm.
+        // TODO: LayerMasks for this grab
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, range))
+        {
+            print("You grabbed some TP!");
+            // Disable the TP on-map, or move it, idk. 
+            currState = GearState.ExtenderHold;
+        } else
+        {
+            // Miss
+        }
         print("Grabbing shit.");
         yield return new WaitForSeconds(0.5f);
         isGrabbing = false;
@@ -103,6 +122,7 @@ public class PlayerEquipment : MonoBehaviour
 
     void DropTP()
     {
+        print("Dropping TP?");
         currState = GearState.ExtenderNeutral;
         // TODO: Also drop the TP in a radius around you
     }
