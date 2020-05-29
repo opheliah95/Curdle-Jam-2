@@ -28,6 +28,9 @@ public class PlayerEquipment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * range, Color.blue);
+        Debug.DrawRay(transform.position, cam.transform.TransformDirection(Vector3.forward) * range, Color.yellow);
+
         // Get input.
         if (Input.GetMouseButtonDown(1))
         {
@@ -56,7 +59,7 @@ public class PlayerEquipment : MonoBehaviour
             }
         }
 
-        // Draw gear in and such.
+        // Draw gear in and animate such.
     }
 
     void SwitchGear()
@@ -76,20 +79,14 @@ public class PlayerEquipment : MonoBehaviour
         // Animate stick
         // Raycast the push
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward));
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range))
+        // Doesn't take vert axis into account
+        // if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range))
+        if (Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, range))
         {
-            // TODO: Take vertical rotation into account. 
             print("You hit a thing!");
-            // TODO: Move object backwards
-            // TODO: Effective range
+            // TODO: Move object backwards using the object's method
             hit.transform.Translate(transform.TransformDirection(Vector3.forward) * pushStrength);
-            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-        } else
-        {
-            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
         }
-        // Do the push on enem(y/ies)
         print("Poking poking poking");
         yield return new WaitForSeconds(0.5f);
         isPoking = false;
