@@ -6,13 +6,14 @@ public class PlayerEquipment : MonoBehaviour
 {
     public GearState currState;
     public Transform player;
+    public bool isPoking;
+    public bool isGrabbing;
+    public float pushStrength;
 
     public enum GearState
     {
         StickNeutral,
-        StickPoke,
         ExtenderNeutral,
-        ExtenderGrab,
         ExtenderHold
     }
 
@@ -40,13 +41,20 @@ public class PlayerEquipment : MonoBehaviour
             switch (currState)
             {
                 case (GearState.StickNeutral):
+                    if (!isPoking)
+                        StartCoroutine("Poke");
                     break;
                 case (GearState.ExtenderNeutral):
+                    if (!isGrabbing)
+                        StartCoroutine("Grab");
                     break;
                 case (GearState.ExtenderHold):
+                    DropTP();
                     break;
             }
         }
+
+        // Draw gear in and such.
     }
 
     void SwitchGear()
@@ -61,26 +69,41 @@ public class PlayerEquipment : MonoBehaviour
             currState = GearState.ExtenderNeutral;
     }
 
-    void Poke()
+    IEnumerator Poke()
     {
-        if (currState == GearState.StickNeutral)
+        isPoking = true;
+        // Animate stick
+        // Raycast the push
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
         {
-            currState = GearState.StickPoke;
-            // Use coroutines to do the stabby stab
+            // TODO: Take vertical rotation into account. 
+            print("You hit a thing!");
+            // TODO: Move object backwards
+            hit.transform.Translate(Vector3.forward * Time.deltaTime * pushStrength);
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+        } else
+        {
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
         }
+        // Do the push on enem(y/ies)
+        print("Poking poking poking");
+        yield return new WaitForSeconds(0.5f);
+        isPoking = false;
     }
 
-    void Grab()
+    IEnumerator Grab()
     {
-
+        isGrabbing = true;
+        // Do the grabby wabby
+        print("Grabbing shit.");
+        yield return new WaitForSeconds(0.5f);
+        isGrabbing = false;
     }
 
     void DropTP()
     {
-        if (currState == GearState.ExtenderHold)
-        {
-            currState = GearState.ExtenderNeutral;
-            // TODO: Also drop the TP in a radius around you
-        }
+        currState = GearState.ExtenderNeutral;
+        // TODO: Also drop the TP in a radius around you
     }
 }
