@@ -77,7 +77,7 @@ public class PlayerEquipment : MonoBehaviour
         // Raycast the push
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward));
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, range))
         {
             // TODO: Take vertical rotation into account. 
             print("You hit a thing!");
