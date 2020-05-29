@@ -6,6 +6,7 @@ public class PlayerEquipment : MonoBehaviour
 {
     public GearState currState;
     public Transform player;
+    public Transform cam;
     public bool isPoking;
     public bool isGrabbing;
     public float pushStrength;
@@ -64,8 +65,7 @@ public class PlayerEquipment : MonoBehaviour
 
         if (currState == GearState.ExtenderNeutral)
             currState = GearState.StickNeutral;
-
-        if (currState == GearState.StickNeutral)
+        else if (currState == GearState.StickNeutral)
             currState = GearState.ExtenderNeutral;
     }
 
@@ -80,6 +80,7 @@ public class PlayerEquipment : MonoBehaviour
             // TODO: Take vertical rotation into account. 
             print("You hit a thing!");
             // TODO: Move object backwards
+            // TODO: Effective range
             hit.transform.Translate(Vector3.forward * Time.deltaTime * pushStrength);
             //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
         } else
