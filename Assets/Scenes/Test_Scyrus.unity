@@ -203,9 +203,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currState: 0
   player: {fileID: 0}
+  cam: {fileID: 0}
   isPoking: 0
   isGrabbing: 0
-  pushStrength: 1000
+  pushStrength: 1
+  range: 1
 --- !u!1 &172013130
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class PlayerEquipment : MonoBehaviour
     public bool isPoking;
     public bool isGrabbing;
     public float pushStrength;
+    public float range;
 
     public enum GearState
     {
@@ -75,13 +76,14 @@ public class PlayerEquipment : MonoBehaviour
         // Animate stick
         // Raycast the push
         RaycastHit hit;
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward));
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
         {
             // TODO: Take vertical rotation into account. 
             print("You hit a thing!");
             // TODO: Move object backwards
             // TODO: Effective range
-            hit.transform.Translate(Vector3.forward * Time.deltaTime * pushStrength);
+            hit.transform.Translate(transform.TransformDirection(Vector3.forward) * pushStrength);
             //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
         } else
         {
