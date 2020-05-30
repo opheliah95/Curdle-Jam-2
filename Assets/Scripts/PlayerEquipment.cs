@@ -87,7 +87,7 @@ public class PlayerEquipment : MonoBehaviour
         anim.SetBool("hasTP", false);
         // Random point.
         Vector2 point = Random.insideUnitCircle * range;
-        Vector3 newLocation = new Vector3(point.x, 0, point.y);
+        Vector3 newLocation = new Vector3(point.x, -2, point.y);
         newLocation += transform.position - transform.TransformDirection(Vector3.forward) * range;
         TP.transform.position = newLocation;
         TP.SetActive(true);

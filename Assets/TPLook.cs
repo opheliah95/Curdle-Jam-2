@@ -10,5 +10,6 @@ public class TPLook : MonoBehaviour
     void Update()
     {
         transform.LookAt(player.transform);
+        transform.Rotate(new Vector3(transform.position.x + 180, transform.position.y, transform.position.z));
     }
 }

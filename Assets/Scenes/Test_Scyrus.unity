@@ -202,7 +202,7 @@ MonoBehaviour:
   currState: 0
   cam: {fileID: 192614124}
   isGrabbing: 0
-  range: 5
+  range: 8
   anim: {fileID: 996317836}
 --- !u!1 &192614121
 GameObject:
@@ -795,20 +795,25 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 67637460}
+    - target: {fileID: 8630315488538792984, guid: ec27885388f3d0042891520323914eae,
+        type: 3}
+      propertyPath: isChasing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8630315488538792986, guid: ec27885388f3d0042891520323914eae,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.1842527
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8630315488538792986, guid: ec27885388f3d0042891520323914eae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.0036745
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8630315488538792986, guid: ec27885388f3d0042891520323914eae,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.834822
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8630315488538792986, guid: ec27885388f3d0042891520323914eae,
         type: 3}
