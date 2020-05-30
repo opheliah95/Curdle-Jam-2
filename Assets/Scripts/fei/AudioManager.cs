@@ -17,6 +17,7 @@ public class AudioManager
             audiosource = new GameObject().AddComponent<AudioSource>();
             audiosource.name = "soundplayer";
         }
+        audiosource.transform.position = Camera.main.transform.position;
         audiosource.volume = vol;
         audiosource.PlayOneShot(sfx);
 
