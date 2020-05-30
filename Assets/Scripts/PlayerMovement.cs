@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        speed = 12.0f;
     }
 
     // Update is called once per frame

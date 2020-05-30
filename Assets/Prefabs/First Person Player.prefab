@@ -65,8 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed1ef8a2df7e9147b1e297f78996d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  speed: 12
+  controller: {fileID: 8945905213068216130}
+  speed: 20
 --- !u!114 &8945905213068216143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,8 +83,9 @@ MonoBehaviour:
   cam: {fileID: 8945905213220067707}
   isGrabbing: 0
   hasTP: 0
-  range: 10
+  range: 7
   anim: {fileID: 0}
+  canvas: {fileID: 0}
 --- !u!82 &8945905213068216142
 AudioSource:
   m_ObjectHideFlags: 0
@@ -277,6 +278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8819b08d26f792049a644b5131484560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 150
   playerBody: {fileID: 8945905213068216129}
   xRotation: 10

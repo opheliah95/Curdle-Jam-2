@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerEquipment : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerEquipment : MonoBehaviour
     private GameObject TP; // "Inventory"; to drop it.
     public Animator anim;
 
+    public Canvas canvas;
+
     public enum GearState
     {
         // StickNeutral,
@@ -29,7 +32,6 @@ public class PlayerEquipment : MonoBehaviour
     void Start()
     {
         currState = GearState.ExtenderNeutral;
-        range = 5.0f;
         //anim = GetComponent<Animator>();
     }
 
@@ -106,11 +108,30 @@ public class PlayerEquipment : MonoBehaviour
             // play cough, lose game
             print("You lose, loser.");
             transform.GetComponent<AudioSource>().Play();
+
+            StartCoroutine("GameOver", false);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("my_house") && hasTP)
         {
             // back home with TP, you win.
             print("Champion asswipe.");
+            
+            StartCoroutine("GameOver", true);
         }
+    }
+
+    IEnumerator GameOver(bool hasWon)
+    {
+        Transform canvasPanel = canvas.transform.GetChild(1);
+
+        yield return new WaitForSeconds(1.0f);
+
+        Time.timeScale = 0;
+        canvasPanel.gameObject.SetActive(true);
+
+        if (hasWon)
+            canvasPanel.GetChild(0).GetComponent<Text>().text = "You've retrieved the toilet paper and your behind thanks you!";
+        else
+            canvasPanel.GetChild(0).GetComponent<Text>().text = "You died dreaming of toilet paper!";
     }
 }
