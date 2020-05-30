@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8630315488538792984}
   - component: {fileID: 8630315488538792987}
   - component: {fileID: 8630315488538792980}
-  m_Layer: 0
-  m_Name: Infected
+  m_Layer: 9
+  m_Name: InfectedMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb4ee1625d5b8646b0bd2e0dffbdb11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  player: {fileID: 0}
   speed: 0
   isChasing: 0
   isTesting: 0
