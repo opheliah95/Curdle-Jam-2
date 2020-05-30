@@ -6,7 +6,7 @@ public class InfectedBehaviour : MonoBehaviour
 {
     Animator anim;
 
-    public GameObject Player;
+    public GameObject player;
     public float speed;
 
     public bool isChasing;
@@ -23,15 +23,15 @@ public class InfectedBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(Player.transform);
+        transform.LookAt(player.transform);
         transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z));
 
-        direction = Player.transform.position - transform.position;
+        direction = player.transform.position - transform.position;
 
         if (isChasing)
         {
             //float step = speed * Time.deltaTime;
-            //transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
+            //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
 
             Vector3 movement = direction.normalized * speed * Time.deltaTime;
 
@@ -39,6 +39,8 @@ public class InfectedBehaviour : MonoBehaviour
                 movement = direction;
 
             GetComponent<CharacterController>().Move(movement);
+
+            anim.SetBool("isChasing", true);
         }
 
         if(isTesting)
