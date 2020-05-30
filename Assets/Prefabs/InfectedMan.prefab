@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 18
+  speed: 12
   isChasing: 0
   isTesting: 0
 --- !u!143 &8630315488538792987
