@@ -9,6 +9,6 @@ public class TitleButton : MonoBehaviour
     public string sceneToload = "";
     public void LoadScene()
     {
-        SceneManager.LoadScene(sceneToload);
+        SceneManager.LoadScene(1);
     }
 }
