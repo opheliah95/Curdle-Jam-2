@@ -54,7 +54,7 @@ public class InfectedBehaviour : MonoBehaviour
     {
         anim.SetBool("isHit", true);
         
-        Vector3 knockBack = -(direction.normalized * 5);
+        Vector3 knockBack = -(direction.normalized * 10);
         knockBack = new Vector3(knockBack.x, 0, knockBack.z);
         GetComponent<CharacterController>().Move(knockBack);
 

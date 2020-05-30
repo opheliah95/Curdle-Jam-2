@@ -202,7 +202,7 @@ MonoBehaviour:
   currState: 0
   cam: {fileID: 192614124}
   isGrabbing: 0
-  range: 8
+  range: 10
   anim: {fileID: 996317836}
 --- !u!1 &192614121
 GameObject:
@@ -1052,6 +1052,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794341526681208094, guid: 0af1dd76e5b4d7440b7db9a4afa5d291,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -46
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794341526681208094, guid: 0af1dd76e5b4d7440b7db9a4afa5d291,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0af1dd76e5b4d7440b7db9a4afa5d291, type: 3}
