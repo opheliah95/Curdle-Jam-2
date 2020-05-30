@@ -39,6 +39,8 @@ public class InfectedBehaviour : MonoBehaviour
                 movement = direction;
 
             GetComponent<CharacterController>().Move(movement);
+
+            anim.SetBool("isChasing", true);
         }
 
         if(isTesting)
