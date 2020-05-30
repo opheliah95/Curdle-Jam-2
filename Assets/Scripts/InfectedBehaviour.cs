@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InfectedBehaviour : MonoBehaviour
 {
+    Animator anim;
+
     public GameObject Player;
     public float speed;
 
@@ -15,7 +17,7 @@ public class InfectedBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,14 +43,19 @@ public class InfectedBehaviour : MonoBehaviour
 
         if(isTesting)
         {
-            isHit();
+            StartCoroutine("IsHit");
             isTesting = false;
         }
     }
 
-    public void isHit()
+    public IEnumerator IsHit()
     {
+        anim.SetBool("isHit", true);
+        
         Vector3 knockBack = -(direction.normalized * 5);
         GetComponent<CharacterController>().Move(knockBack);
+
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("isHit", false);
     }
 }
