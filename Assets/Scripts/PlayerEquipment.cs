@@ -105,6 +105,7 @@ public class PlayerEquipment : MonoBehaviour
         {
             // play cough, lose game
             print("You lose, loser.");
+            transform.GetComponent<AudioSource>().Play();
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("my_house") && hasTP)
         {
