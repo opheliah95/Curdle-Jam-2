@@ -12,6 +12,7 @@ public class PlayerEquipment : MonoBehaviour
     // public float pushStrength;
     public float range;
     //public LayerMask[] interactableLayers;
+    private GameObject TP; // "Inventory"; to drop it.
 
     public enum GearState
     {
@@ -56,15 +57,13 @@ public class PlayerEquipment : MonoBehaviour
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("tp_layer"))
                 {
-                    print("TP!");
                     currState = GearState.ExtenderHold;
-                    // Disable the TP on-map, or move it, idk. 
-
+                    TP = hit.collider.gameObject;
+                    TP.SetActive(false);
                 }
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("infected_layer"))
                 {
-                    print("Infected!");
-                    hit.transform.Translate(transform.TransformDirection(Vector3.forward));
+                    hit.collider.gameObject.GetComponent<InfectedBehaviour>().StartCoroutine("IsHit");
                 }
             }
         }
@@ -80,6 +79,12 @@ public class PlayerEquipment : MonoBehaviour
     {
         print("Dropping TP?");
         currState = GearState.ExtenderNeutral;
-        // TODO: Also drop the TP in a radius around you
+
+        // Random point.
+        Vector2 point = Random.insideUnitCircle * range;
+        Vector3 newLocation = new Vector3(point.x, 0, point.y);
+        newLocation += transform.position - transform.TransformDirection(Vector3.forward) * range;
+        TP.transform.position = newLocation;
+        TP.SetActive(true);
     }
 }
