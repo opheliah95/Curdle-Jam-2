@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerEquipment : MonoBehaviour
@@ -123,6 +124,7 @@ public class PlayerEquipment : MonoBehaviour
     IEnumerator GameOver(bool hasWon)
     {
         Transform canvasPanel = canvas.transform.GetChild(1);
+        Cursor.lockState = CursorLockMode.None;
 
         yield return new WaitForSeconds(1.0f);
 
@@ -133,5 +135,11 @@ public class PlayerEquipment : MonoBehaviour
             canvasPanel.GetChild(0).GetComponent<Text>().text = "You've retrieved the toilet paper and your behind thanks you!";
         else
             canvasPanel.GetChild(0).GetComponent<Text>().text = "You died dreaming of toilet paper!";
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
     }
 }

@@ -28,6 +28,9 @@ public class InfectedBehaviour : MonoBehaviour
 
         direction = player.transform.position - transform.position;
 
+        if (player.GetComponent<PlayerEquipment>().hasTP && !isChasing)
+            isChasing = true;
+
         if (isChasing)
         {
             //float step = speed * Time.deltaTime;
