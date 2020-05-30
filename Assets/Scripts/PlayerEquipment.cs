@@ -13,6 +13,7 @@ public class PlayerEquipment : MonoBehaviour
     public float range;
     //public LayerMask[] interactableLayers;
     private GameObject TP; // "Inventory"; to drop it.
+    public Animator anim;
 
     public enum GearState
     {
@@ -26,6 +27,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         currState = GearState.ExtenderNeutral;
         range = 5.0f;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,7 +54,6 @@ public class PlayerEquipment : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, range))
         {
-            print("You touched...");
             if (hit.collider != null)
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("tp_layer"))
@@ -77,7 +78,6 @@ public class PlayerEquipment : MonoBehaviour
 
     void DropTP()
     {
-        print("Dropping TP?");
         currState = GearState.ExtenderNeutral;
 
         // Random point.
