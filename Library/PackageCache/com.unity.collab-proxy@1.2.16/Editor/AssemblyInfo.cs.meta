@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Scripts/PlayerEquipment.cs.meta
-guid: dc43400fb1bbb7846b5ff33f2f726be2
-=======
-guid: 7eb4ee1625d5b8646b0bd2e0dffbdb11
->>>>>>> Dullios-Branch:Assets/Scripts/InfectedBehaviour.cs.meta
+guid: d4ef26aa386b44923b61c9c4b505a67c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
