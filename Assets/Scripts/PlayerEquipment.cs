@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerEquipment : MonoBehaviour
 {
+    // I guess this is more of a full player controller at this point...minus the movement. Gross.
+
     public GearState currState;
     // public Transform player;
     public Transform cam;
     // public bool isPoking;
     public bool isGrabbing;
+    public bool hasTP;
     // public float pushStrength;
     public float range;
     //public LayerMask[] interactableLayers;
@@ -62,6 +65,7 @@ public class PlayerEquipment : MonoBehaviour
                     anim.SetBool("hitTP", true);
                     anim.SetBool("hasTP", true);
                     // I feel this is awkward and not done right...!
+                    hasTP = true;
                     TP = hit.collider.gameObject;
                     TP.SetActive(false);
                 }
@@ -86,11 +90,25 @@ public class PlayerEquipment : MonoBehaviour
     {
         currState = GearState.ExtenderNeutral;
         anim.SetBool("hasTP", false);
+        hasTP = false;
         // Random point.
         Vector2 point = Random.insideUnitCircle * range;
         Vector3 newLocation = new Vector3(point.x, -2, point.y);
         newLocation += transform.position - transform.TransformDirection(Vector3.forward) * range;
         TP.transform.position = newLocation;
         TP.SetActive(true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("infected_layer"))
+        {
+            // play cough, lose game
+            print("You lose, loser.");
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("my_house") && hasTP)
+        {
+            // back home with TP, you win.
+        }
     }
 }

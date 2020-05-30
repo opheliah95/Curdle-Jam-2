@@ -202,6 +202,7 @@ MonoBehaviour:
   currState: 0
   cam: {fileID: 192614124}
   isGrabbing: 0
+  hasTP: 0
   range: 10
   anim: {fileID: 996317836}
 --- !u!1 &192614121
@@ -303,6 +304,25 @@ MonoBehaviour:
   mouseSensitivity: 100
   playerBody: {fileID: 67637462}
   xRotation: 10
+--- !u!1 &428615851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8630315488538792991, guid: ec27885388f3d0042891520323914eae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1932617261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &428615852
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428615851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.82, y: 7.62, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &892637946
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +820,16 @@ PrefabInstance:
       propertyPath: isChasing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8630315488538792984, guid: ec27885388f3d0042891520323914eae,
+        type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8630315488538792985, guid: ec27885388f3d0042891520323914eae,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8630315488538792986, guid: ec27885388f3d0042891520323914eae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -854,6 +884,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8630315488538792987, guid: ec27885388f3d0042891520323914eae,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8630315488538792991, guid: ec27885388f3d0042891520323914eae,
         type: 3}
