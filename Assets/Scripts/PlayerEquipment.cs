@@ -109,6 +109,7 @@ public class PlayerEquipment : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("my_house") && hasTP)
         {
             // back home with TP, you win.
+            print("Champion asswipe.");
         }
     }
 }
