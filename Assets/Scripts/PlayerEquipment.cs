@@ -51,7 +51,8 @@ public class PlayerEquipment : MonoBehaviour
         anim.SetBool("isGrabbing", true);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, range))
+        //if (Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, range))
+        if (Physics.SphereCast(transform.position, 1f, cam.transform.TransformDirection(Vector3.forward), out hit, range))
         {
             if (hit.collider != null)
             {
